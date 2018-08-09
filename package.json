@@ -1,0 +1,17 @@
+{
+  "name": "edu.neu.webdev.summer2.coursemanager",
+  "version": "1.0.0",
+  "description": "Node server for course manager",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "vshukla",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.3",
+    "express-session": "^1.15.6",
+    "mongoose": "^5.2.7"
+  },
+  "devDependencies": {}
+}
