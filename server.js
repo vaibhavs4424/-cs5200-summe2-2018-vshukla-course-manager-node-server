@@ -66,6 +66,11 @@ function getSession(req, res) {
 var userService = require('./services/user.service.server');
 userService(app);
 
+var questionService = require('./services/question.service.server');
+questionService(app);
+
+var quizService = require('./services/quiz.service.server');
+quizService(app);
 
 var sectionService = require('./services/section.service.server');
 sectionService(app);
