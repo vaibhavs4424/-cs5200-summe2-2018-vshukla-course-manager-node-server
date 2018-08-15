@@ -2,7 +2,6 @@ module.exports = app => {
 
   const quizModel = require('../models/quizzes/quiz.model.server');
     const submissionModel = require('../models/quizzes/submission.model.server');
-  var quizzes = require('./quizzes.json');
 
   createQuiz = (req, res) => {
     quizModel.createQuiz(req.body)

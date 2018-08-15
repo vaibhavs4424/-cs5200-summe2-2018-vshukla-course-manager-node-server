@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const schema = require('submission.schema.server')
+const schema = require('./submission.schema.server')
 const model = mongoose.model('SubmissionModel', schema)
 
 createSubmission = submission =>
