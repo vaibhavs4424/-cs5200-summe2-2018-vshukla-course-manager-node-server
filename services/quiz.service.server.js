@@ -1,6 +1,8 @@
 module.exports = app => {
 
   const quizModel = require('../models/quizzes/quiz.model.server');
+    const submissionModel = require('../models/quizzes/submission.model.server');
+  var quizzes = require('./quizzes.json');
 
   createQuiz = (req, res) => {
     quizModel.createQuiz(req.body)
@@ -37,8 +39,26 @@ module.exports = app => {
   }
 
   submitQuiz = (req, res) => {
-    res.json(req.body)
+    var quizId = req.params['qid'];
+    var currentUser =   req.session.currentUser;
+    var userId = currentUser._id;
+    var submission = {
+      answers : req.body,
+        quiz : quizId,
+        student : userId
+    }
+  submissionModel.createSubmission(submission)
+      .then(submission => res.send(submission))
   }
+
+  function findSubmissionsForQuiz(req, res) {
+        var quizId = req.params.quizId;
+        submissionModel
+            .findAllSubmissionsForQuiz(quizId)
+            .then(function (submissions) {
+                res.json(submissions);
+            });
+    }
 
   app.post('/api/quiz', createQuiz);
   app.get('/api/quiz', findAllQuizzes);
@@ -46,6 +66,7 @@ module.exports = app => {
   app.put('/api/quiz/:qid', updateQuiz);
   app.delete('/api/quiz/:qid', deleteQuiz);
   app.put('/api/quiz/:qid/question/:questionId', addQuestion);
-  app.post('/api/quiz/:qid/submission', submitQuiz)
+  app.post('/api/quiz/:qid/submission', submitQuiz);
+  app.get('/api/quiz/:quizId/submissions', findSubmissionsForQuiz);
 
 }
