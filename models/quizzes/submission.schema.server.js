@@ -21,5 +21,5 @@ module.exports = mongoose.Schema({
       ref: 'QuestionModel'
     }
   }],
-    submissionTime: String,
+    submissionTime: String
 }, {collection: 'submission'})
