@@ -20,5 +20,6 @@ module.exports = mongoose.Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: 'QuestionModel'
     }
-  }]
+  }],
+    submissionTime: String,
 }, {collection: 'submission'})

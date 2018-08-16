@@ -104,6 +104,7 @@ module.exports = function(app){
         sectionModel.findSectionById(id)
             .then(function (section) {
                 res.json(section);
+
             })
     }
 

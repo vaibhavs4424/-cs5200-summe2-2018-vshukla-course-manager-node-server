@@ -41,14 +41,15 @@ module.exports = app => {
     var quizId = req.params['qid'];
     var currentUser =   req.session.currentUser;
     var userId = currentUser._id;
-    var submission = {
-      answers : req.body,
-        quiz : quizId,
-        student : userId
-    }
-  submissionModel.createSubmission(submission)
-      .then(submission => res.send(submission))
+    var submission = req.body
+  submissionModel.submitQuiz(submission,quizId,userId)
+      .then(submission => res.json(submission))
   }
+
+    findSubmissionbyId = (req,res) => {
+        var submissionId =req.params.submissionId;
+        submissionModel.findSubmissionById(submissionId).then(submission => res.json(submission));
+    }
 
   function findSubmissionsForQuiz(req, res) {
         var quizId = req.params.quizId;
@@ -66,6 +67,7 @@ module.exports = app => {
   app.delete('/api/quiz/:qid', deleteQuiz);
   app.put('/api/quiz/:qid/question/:questionId', addQuestion);
   app.post('/api/quiz/:qid/submission', submitQuiz);
+  app.get('/api/quiz/:qid/submission/:submissionId', findSubmissionbyId);
   app.get('/api/quiz/:quizId/submissions', findSubmissionsForQuiz);
 
 }
