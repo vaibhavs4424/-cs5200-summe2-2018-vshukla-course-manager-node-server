@@ -10,8 +10,8 @@ module.exports = mongoose.Schema({
   },
   answers: [{
     fillBlanksAnswers: {
-      variable: String,
-      value: String
+      val1: String,
+      val2: String
     },
       multipleChoiceAnswer: Number,
     trueFalseAnswer: Boolean,
