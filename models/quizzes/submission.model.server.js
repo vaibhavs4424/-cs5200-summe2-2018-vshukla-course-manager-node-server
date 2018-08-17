@@ -3,16 +3,16 @@ const schema = require('./submission.schema.server')
 const model = mongoose.model('SubmissionModel', schema)
 
 createSubmission = submission =>
-  mongoose.create(submission)
+    model.create(submission)
 
 findAllSubmissions = () =>
-  mongoose.find()
+    model.find()
 
 findAllSubmissionsForStudent = studentId =>
-  mongoose.find({student: studentId})
+  model.find({student: studentId})
 
 findAllSubmissionsForQuiz = quizId =>
-  mongoose.find({quiz: quizId})
+  model.find({quiz: quizId})
 
 findSubmissionById = (submissionId) => {
     return model.find({"_id"  : submissionId});
